@@ -21,7 +21,7 @@ Description: These scripts perform permutation-based prediction with lambda sear
 #Sensitivity Analyses
 Additional analyses explore alternative methods, including:
 
-10-Fold Cross-Validation: Script: NonShuffled_10_FOLD_PEBs.m, NonShuffled_LOOCV_PEBs.m
+10-Fold Cross-Validation: Script: NonShuffled_10_FOLD_PEBs.m, runLOOCVPEB.m
 Leave-One-Out Cross-Validation (LOOCV)
 Bootstrap Model Reweighting (BMR)
 Ridge Regression
