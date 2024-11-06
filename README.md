@@ -1,27 +1,29 @@
-# DCMs2
-The code for task-evoked modulatory and intrinsic EC prediction
-This README describes the steps in our Effective Connectivity (EC) prediction analysis, including Lasso-regularized linear regression, label-shuffled permutation testing, and sensitivity analyses. The analysis consists of four main stages, with scripts organized accordingly.
+This repository contains code for task-evoked modulatory and intrinsic Effective Connectivity (EC) prediction. Our analysis consists of four primary steps, using Lasso-regularized linear regression, label-shuffled permutation testing, and various sensitivity analyses. Each step has dedicated scripts for efficient and organized execution.
 
-#Step 1: EC Prediction with PEB
+Step 1: EC Prediction with Parametric Empirical Bayes (PEB)
 Script: runPEB.m
-Description: This script generates 5-fold data splits and performs Parametric Empirical Bayes (PEB) modeling for each fold to predict EC features.
-
-#Step 2: Lasso-Regularized Linear Regression
-Scripts: LambdaSearchPEB_MatB.m / LambdaSearchPEB_MatA.m
-Description: These scripts implement Lasso-regularized linear regression with a lambda search to optimize the regularization parameter.
-
-#Step 3: Label-Shuffled Permutation for k-Fold PEB
+Description: Generates 5-fold data splits and applies Parametric Empirical Bayes (PEB) modeling to predict EC features for each fold.
+Step 2: Lasso-Regularized Linear Regression with Lambda Search
+Scripts: LambdaSearchPEB_MatB.m, LambdaSearchPEB_MatA.m
+Description: Executes Lasso-regularized linear regression with a lambda search, optimizing the regularization parameter to improve prediction accuracy.
+Step 3: Label-Shuffled Permutation Testing for k-Fold PEB
 Script: runPEBWithShuffling.m
-Description: This script conducts label-shuffled k-fold PEB analyses to test the robustness of our EC predictions. The process includes 500 permutations, split into two sets of 250 to manage computational limits (24-hour runtime).
+Description: Conducts label-shuffled k-fold PEB analyses to test the robustness of EC predictions. The script performs 500 permutations (split into two sets of 250) to accommodate computational limits (24-hour runtime).
+Step 4: Permutation Testing with Lasso Lambda Search
+Scripts: runLassoGridSearch_MatB.m, runLassoGridSearch_MatA.m
+Description: Uses permutation-based prediction with lambda searching to further validate EC prediction stability.
+Sensitivity Analyses
+These additional analyses examine alternative cross-validation schemes, prediction algorithms, and models.
 
-#Step 4: Permutation Testing with Lasso lambda Search
-Scripts: runLassoGridSearch_MatB.m / runLassoGridSearch_MatA.m
-Description: These scripts perform permutation-based prediction with lambda searching, further validating the stability of EC predictions.
+Cross-Validation Variants
 
-#Sensitivity Analyses
-Additional analyses explore alternative methods, including:
+Scripts: NonShuffled_10_FOLD_PEBs.m, runPEBLOOCV.m
+Description: Applies different cross-validation schemes (e.g., 10-fold and Leave-One-Out Cross-Validation (LOOCV)) to assess prediction stability.
+Ridge-regularized Linear Regression
 
-10-Fold Cross-Validation: Script: NonShuffled_10_FOLD_PEBs.m, runLOOCVPEB.m
-Leave-One-Out Cross-Validation (LOOCV)
-Bootstrap Model Reweighting (BMR)
-Ridge Regression
+Scripts: LambdaSearchPEB_MatB_Ridge.m, LambdaSearchPEB_MatA_Ridge.m
+Description: Estimates prediction correlations using ridge-regularized linear regression as an alternative to Lasso.
+Bayesian Model Reduction (BMR)
+
+Scripts: BMR, LambdaSearchBMA_MatA.m, LambdaSearchBMA_MatB.m
+Description: To overcome server usage limits, we recompiled MATLAB using the MATLAB runtime (v98) and conducted Bayesian Model Reduction (BMR) to estimate prediction correlations based on BMR-derived features.
